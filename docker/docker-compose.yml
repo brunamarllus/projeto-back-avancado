@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: salgateria-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: salgateria
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - salgateria_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  salgateria_postgres_data:
