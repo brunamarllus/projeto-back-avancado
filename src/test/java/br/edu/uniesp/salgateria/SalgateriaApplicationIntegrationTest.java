@@ -7,10 +7,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
-/**
- * Sobe a aplicação com PostgreSQL real: aplica as migrations do Flyway e valida o mapeamento
- * das entidades contra o esquema (spring.jpa.hibernate.ddl-auto=validate). Requer Docker.
- */
 @SpringBootTest
 @Testcontainers
 class SalgateriaApplicationIntegrationTest {

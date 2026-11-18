@@ -24,7 +24,6 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/** Grava e relê um pedido completo no PostgreSQL, validando mapeamentos, cascatas e relacionamentos. */
 @SpringBootTest
 @Testcontainers
 @Transactional
@@ -49,8 +48,8 @@ class PedidoPersistenciaIntegrationTest {
         PedidoEntity pedido = new PedidoEntity(cliente, LocalDate.now().plusDays(3), "Sem pimenta", "Atendente");
         pedido.adicionarItem(coxinha, 2);
         pedido.adicionarItem(kibe, 1);
-        pedido.adicionarItem(coxinha, 1); // mesmo produto: soma a quantidade -> 2 itens, total 380,00
-        pedido.registrarPagamento(new BigDecimal("190.00"), FormaPagamento.PIX, "Atendente"); // 50%
+        pedido.adicionarItem(coxinha, 1);
+        pedido.registrarPagamento(new BigDecimal("190.00"), FormaPagamento.PIX, "Atendente");
         pedidoRepository.saveAndFlush(pedido);
 
         em.clear();

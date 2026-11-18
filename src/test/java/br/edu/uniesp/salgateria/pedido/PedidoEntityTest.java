@@ -24,7 +24,7 @@ class PedidoEntityTest {
         ClienteEntity cliente = new ClienteEntity("Maria", "12345678901", "83999999999", null, null);
         ProdutoEntity coxinha = new ProdutoEntity("Coxinha (cento)", null, new BigDecimal("100.00"));
         pedido = new PedidoEntity(cliente, LocalDate.now().plusDays(3), null, "Atendente");
-        pedido.adicionarItem(coxinha, 2); // total 200,00 -> entrada mínima 100,00
+        pedido.adicionarItem(coxinha, 2);
     }
 
     private static BigDecimal v(String valor) {

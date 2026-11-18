@@ -8,10 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-/**
- * Item de um pedido. Guarda o preço do produto no momento da venda, para que uma
- * atualização posterior de preço não altere pedidos já feitos.
- */
 @Entity
 @Getter
 @Table(name = "itens_pedido")
@@ -36,7 +32,6 @@ public class ItemPedidoEntity {
     @Column(name = "preco_unitario", nullable = false, precision = 10, scale = 2)
     private BigDecimal precoUnitario;
 
-    // Criado e alterado somente por PedidoEntity (mesmo pacote), que valida o estado do pedido.
     ItemPedidoEntity(PedidoEntity pedido, ProdutoEntity produto, int quantidade) {
         this.pedido = pedido;
         this.produto = produto;

@@ -7,9 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * Objeto de valor imutável: o endereço do cliente. Para alterar, cria-se um novo endereço.
- */
 @Embeddable
 @Getter
 @EqualsAndHashCode

@@ -9,10 +9,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * Registro imutável de um valor recebido. Só é criado por {@link PedidoEntity#registrarPagamento},
- * que garante as regras de pagamento mínimo e de limite do valor total.
- */
 @Entity
 @Getter
 @Table(name = "pagamentos")
