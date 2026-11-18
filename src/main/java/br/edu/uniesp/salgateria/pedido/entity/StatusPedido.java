@@ -1,4 +1,3 @@
-
 package br.edu.uniesp.salgateria.pedido.entity;
 
 public enum StatusPedido {
