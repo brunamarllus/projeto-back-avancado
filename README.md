@@ -95,7 +95,12 @@ docs/                              # diagrama de classes UML
 
 ## 8. Modelo de domínio
 
-O diagrama de classes UML está em [docs/diagrama-classes.md](docs/diagrama-classes.md) (Mermaid, renderizado pelo GitHub).
+O diagrama de classes UML (entidades, atributos, métodos modificadores, relacionamentos e multiplicidades) está disponível em:
+
+- **Imagem:** [docs/diagrama-classes.png](docs/diagrama-classes.png)
+- **Código-fonte (Mermaid):** [docs/diagrama-classes.md](docs/diagrama-classes.md), renderizado automaticamente pelo GitHub
+
+![Diagrama de classes UML](docs/diagrama-classes.png)
 
 Relacionamentos previstos:
 
