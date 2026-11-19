@@ -1,7 +1,7 @@
 package br.edu.uniesp.salgateria.pedido.entity;
 
 import br.edu.uniesp.salgateria.cliente.entity.ClienteEntity;
-import br.edu.uniesp.salgateria.pagamento.entity.FormaPagamento;
+import br.edu.uniesp.salgateria.pagamento.FormaPagamento;
 import br.edu.uniesp.salgateria.pagamento.entity.PagamentoEntity;
 import br.edu.uniesp.salgateria.produto.entity.ProdutoEntity;
 import br.edu.uniesp.salgateria.shared.exception.RegraNegocioException;

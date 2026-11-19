@@ -3,7 +3,7 @@ package br.edu.uniesp.salgateria.pedido;
 import br.edu.uniesp.salgateria.cliente.entity.ClienteEntity;
 import br.edu.uniesp.salgateria.cliente.entity.EnderecoEmbeddable;
 import br.edu.uniesp.salgateria.cliente.repository.ClienteRepository;
-import br.edu.uniesp.salgateria.pagamento.entity.FormaPagamento;
+import br.edu.uniesp.salgateria.pagamento.FormaPagamento;
 import br.edu.uniesp.salgateria.pedido.entity.PedidoEntity;
 import br.edu.uniesp.salgateria.pedido.entity.StatusPedido;
 import br.edu.uniesp.salgateria.pedido.repository.PedidoRepository;

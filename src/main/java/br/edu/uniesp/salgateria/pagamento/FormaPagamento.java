@@ -1,4 +1,4 @@
-package br.edu.uniesp.salgateria.pagamento.entity;
+package br.edu.uniesp.salgateria.pagamento;
 
 public enum FormaPagamento {
     PIX,
