@@ -70,12 +70,14 @@ public class PedidoEntity {
         if (cliente == null || !cliente.isAtivo()) {
             throw new RegraNegocioException("Não é permitido abrir pedido para um cliente inativo.");
         }
+
         exigirDataEntregaValida(dataEntregaPrevista);
         this.cliente = cliente;
         this.dataEntregaPrevista = dataEntregaPrevista;
         this.observacao = observacao;
         this.status = StatusPedido.AGUARDANDO_PAGAMENTO;
         this.dataPedido = LocalDateTime.now();
+
         registrarHistorico(null, StatusPedido.AGUARDANDO_PAGAMENTO, responsavel, "Pedido registrado.");
     }
 
@@ -93,23 +95,28 @@ public class PedidoEntity {
 
     public void adicionarItem(ProdutoEntity produto, int quantidade) {
         exigirAguardandoPagamento("Itens só podem ser alterados enquanto o pedido aguarda pagamento.");
+
         if (produto == null || !produto.isAtivo()) {
             throw new RegraNegocioException("Somente produtos ativos podem ser adicionados ao pedido.");
         }
+
         if (quantidade <= 0) {
             throw new RegraNegocioException("A quantidade do item deve ser maior que zero.");
         }
+
         for (ItemPedidoEntity existente : itens) {
             if (existente.getProduto().getId() != null && existente.getProduto().getId().equals(produto.getId())) {
                 existente.aumentarQuantidade(quantidade);
                 return;
             }
         }
+
         itens.add(new ItemPedidoEntity(this, produto, quantidade));
     }
 
     public void removerItem(ItemPedidoEntity item) {
         exigirAguardandoPagamento("Itens só podem ser alterados enquanto o pedido aguarda pagamento.");
+
         if (!itens.remove(item)) {
             throw new RegraNegocioException("O item informado não pertence a este pedido.");
         }
@@ -130,12 +137,15 @@ public class PedidoEntity {
         if (status != StatusPedido.AGUARDANDO_PAGAMENTO && status != StatusPedido.EM_ANDAMENTO) {
             throw new RegraNegocioException("Não é possível registrar pagamento em pedido concluído ou cancelado.");
         }
+
         if (itens.isEmpty()) {
             throw new RegraNegocioException("Não é possível registrar pagamento em um pedido sem itens.");
         }
+
         if (valor == null || valor.compareTo(BigDecimal.ZERO) <= 0) {
             throw new RegraNegocioException("O valor do pagamento deve ser maior que zero.");
         }
+
         if (valor.compareTo(saldoRestante()) > 0) {
             throw new RegraNegocioException("O pagamento (" + valor + ") excede o saldo restante do pedido (" + saldoRestante() + ").");
         }
@@ -148,6 +158,7 @@ public class PedidoEntity {
             alterarStatus(StatusPedido.EM_ANDAMENTO, responsavel,
                     "Pagamento mínimo recebido. Pedido confirmado. Código de rastreio: " + codigoRastreio + ".");
         }
+
         return pagamento;
     }
 
@@ -179,9 +190,11 @@ public class PedidoEntity {
         if (status != StatusPedido.EM_ANDAMENTO) {
             throw new RegraNegocioException("Somente um pedido em andamento pode ser concluído.");
         }
+
         if (saldoRestante().compareTo(BigDecimal.ZERO) > 0) {
             throw new RegraNegocioException("O pedido só pode ser concluído após a quitação do saldo restante (" + saldoRestante() + ").");
         }
+
         this.dataConclusao = LocalDateTime.now();
         alterarStatus(StatusPedido.CONCLUIDO, responsavel, "Pedido entregue e quitado.");
     }
@@ -190,9 +203,11 @@ public class PedidoEntity {
         if (status == StatusPedido.CONCLUIDO || status == StatusPedido.CANCELADO) {
             throw new RegraNegocioException("Não é possível cancelar um pedido concluído ou já cancelado.");
         }
+
         if (motivo == null || motivo.isBlank()) {
             throw new RegraNegocioException("O motivo do cancelamento é obrigatório.");
         }
+
         alterarStatus(StatusPedido.CANCELADO, responsavel, "Pedido cancelado: " + motivo);
     }
 
