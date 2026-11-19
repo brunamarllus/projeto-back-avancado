@@ -75,10 +75,18 @@ src/main/java/br/edu/uniesp/salgateria/
 │   ├── entity/              # Produto
 │   └── repository/
 ├── pedido/
+│   ├── controller/
+│   ├── dto/
 │   ├── entity/              # Pedido, ItemPedido, HistoricoStatus, StatusPedido
-│   └── repository/
+│   ├── repository/
+│   └── service/
 └── pagamento/
-    └── entity/              # Pagamento, FormaPagamento
+    ├── controller/
+    ├── dto/
+    ├── entity/              # Pagamento
+    ├── mapper/
+    ├── repository/
+    └── service/
 
 src/main/resources/db/migration/   # migrations do Flyway (V1 a V4)
 docs/                              # diagrama de classes UML
@@ -88,10 +96,11 @@ docs/                              # diagrama de classes UML
 |---|---|
 | `entity` | Modelo de domínio (JPA). Contém as regras de negócio e os métodos que alteram o estado, sem setters genéricos (somente getters). O `Pedido` é a raiz do agregado: itens, pagamentos e histórico só são alterados por ele. |
 | `repository` | Acesso a dados (Spring Data JPA). |
-| `service` | Casos de uso e orquestração (próximas etapas). |
-| `controller` e `dto` | Interface REST e contratos de entrada e saída (próximas etapas). |
+| `service` | Casos de uso e orquestração. |
+| `controller` e `dto` | Interface REST e contratos de entrada e saída. |
+| `mapper` | Conversão entre entidades e respostas da API. |
 
-> A estrutura acima vale para o projeto completo. Nesta etapa o foco é a modelagem do domínio e a definição da arquitetura, então apenas as camadas `entity` e `repository` estão implementadas. Controllers, services e endpoints não fazem parte da entrega.
+> O registro de pedidos e pagamentos está disponível pela API REST. As regras de pagamento são aplicadas pela raiz do agregado `PedidoEntity`.
 
 ## 8. Modelo de domínio
 
