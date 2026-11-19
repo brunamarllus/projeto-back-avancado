@@ -1,5 +1,6 @@
 package br.edu.uniesp.salgateria.pagamento.entity;
 
+import br.edu.uniesp.salgateria.pagamento.FormaPagamento;
 import br.edu.uniesp.salgateria.pedido.entity.PedidoEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
